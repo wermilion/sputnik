@@ -17,6 +17,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY . /var/www/html
 
+RUN chmod -R 755 /var/www/html/database/migrations
+
 RUN composer install --ignore-platform-reqs
 
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
