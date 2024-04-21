@@ -19,11 +19,15 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
+            'first_name' => $this->faker->name,
+            'last_name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
+            'password' => $this->faker->password,
+            'is_admin' => $this->faker->boolean,
+            'points' => $this->faker->numberBetween(0, 1000)
         ];
     }
 }

@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->string('name')->comment('Название');
             $table->integer('gamer_count')->comment('Количество игроков');
             $table->integer('reward_points')->comment('Количество призовых очков');
+
+            $table->timestamps();
         });
     }
 

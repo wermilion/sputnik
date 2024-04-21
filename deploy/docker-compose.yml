@@ -21,7 +21,7 @@ services:
     build:
       context: ../project
       dockerfile: lumen.Dockerfile
-    command: php artisan migrate
+    command: php artisan migrate --seed
     depends_on:
       db: { condition: service_healthy }
     networks:
