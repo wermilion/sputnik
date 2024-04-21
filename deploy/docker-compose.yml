@@ -1,0 +1,50 @@
+version: "3"
+
+x-environment:
+  DB_DATABASE: &db_database lottery
+  DB_USERNAME: &db_username postgres
+  DB_PASSWORD: &db_password password
+
+services:
+  app:
+    build:
+      context: ../project
+      dockerfile: lumen.Dockerfile
+    ports:
+      - "8080:8000"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  migrator:
+    build:
+      context: ../project
+      dockerfile: lumen.Dockerfile
+    command: php artisan migrate
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: postgres:16-alpine
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: *db_database
+      POSTGRES_USER: *db_username
+      POSTGRES_PASSWORD: *db_password
+    ports:
+      - "5433:5432"
+    networks:
+      - app-network
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
