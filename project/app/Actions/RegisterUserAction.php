@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Actions;
+namespace app\Actions;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;

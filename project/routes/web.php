@@ -20,6 +20,9 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('lottery_games', 'LotteryGameController@index');
+    $router->get('lottery_game_matches', 'LotteryGameMatchController@getByLotteryGame');
+
     $router->group(['prefix' => 'users'], function () use ($router) {
         $router->post('register', 'UserController@register');
     });

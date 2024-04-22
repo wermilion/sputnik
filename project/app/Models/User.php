@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
 /**
- * Class User
+ * class User
  *
+ * @property int id Идентификатор
  * @property string first_name Имя
  * @property string last_name Фамилия
  * @property string email Почта
@@ -35,6 +36,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 
     protected $casts = [
+        'password' => 'hashed',
         'is_admin' => 'boolean',
     ];
 
