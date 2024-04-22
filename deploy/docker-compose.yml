@@ -10,6 +10,9 @@ services:
     build:
       context: ../project
       dockerfile: lumen.Dockerfile
+    command: php -S 0.0.0.0:8000 -t public
+    volumes:
+      - ./../project:/var/www/html
     ports:
       - "8080:8000"
     depends_on:

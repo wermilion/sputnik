@@ -9,6 +9,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
+/**
+ * Class User
+ *
+ * @property string first_name Имя
+ * @property string last_name Фамилия
+ * @property string email Почта
+ * @property string password Пароль
+ * @property bool is_admin Является ли пользователь админом
+ * @property int points Количество очков
+ */
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
