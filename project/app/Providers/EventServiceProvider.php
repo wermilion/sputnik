@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\UserAttemptJoinMatch;
+use App\Listeners\CheckCountGamersMatch;
 use App\Listeners\CheckUserAttemptJoinMatch;
 use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
 
@@ -18,6 +19,7 @@ class EventServiceProvider extends ServiceProvider
             \App\Listeners\ExampleListener::class,
         ],
         UserAttemptJoinMatch::class => [
+            CheckCountGamersMatch::class,
             CheckUserAttemptJoinMatch::class,
         ],
     ];

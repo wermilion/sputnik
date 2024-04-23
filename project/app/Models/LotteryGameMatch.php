@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * class LotteryGameMatch
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $start_date Дата начала
  * @property string $start_time Время начала
  * @property bool $is_finished Завершена ли игра
+ *
+ * @property LotteryGame $game Лоттерейная игра
  */
 class LotteryGameMatch extends Model
 {
@@ -31,4 +34,9 @@ class LotteryGameMatch extends Model
     protected $casts = [
         'is_finished' => 'boolean',
     ];
+
+    public function game(): BelongsTo
+    {
+        return $this->belongsTo(LotteryGame::class, 'game_id');
+    }
 }
