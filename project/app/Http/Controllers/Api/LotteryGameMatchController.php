@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\LotteryGameMatch\CreateLotteryGameMatchAction;
+use App\Actions\LotteryGameMatch\CreateLotteryGameMatchUserAction;
 use App\Actions\LotteryGameMatch\UpdateLotteryGameMatchAction;
 use App\Http\Controllers\Controller;
 use App\Models\LotteryGameMatch;
@@ -39,7 +39,7 @@ class LotteryGameMatchController extends Controller
             'start_time' => ['required', 'date_format:H:i'],
         ]);
 
-        return new LotteryGameMatchResource(CreateLotteryGameMatchAction::execute($validatedData));
+        return new LotteryGameMatchResource(CreateLotteryGameMatchUserAction::execute($validatedData));
     }
 
     /**

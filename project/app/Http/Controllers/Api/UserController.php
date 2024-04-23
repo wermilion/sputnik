@@ -53,7 +53,7 @@ class UserController extends Controller
         ]);
 
         // TODO: make policy for this
-        if (Auth::guard('api')->id() !== $id) {
+        if (Auth::guard('api')->user()->id !== $id) {
             return response()->json(['message' => 'You do not have permission to edit this user'], 403);
         }
 
@@ -71,7 +71,7 @@ class UserController extends Controller
         }
 
         // TODO: make policy for this
-        if (Auth::guard('api')->id() !== $id) {
+        if (Auth::guard('api')->user()->id !== $id) {
             return response()->json(['message' => 'You do not have permission to delete this user'], 403);
         }
 

@@ -42,4 +42,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->post('', 'LotteryGameMatchController@store');
         $router->put('{id}', 'LotteryGameMatchController@update');
     });
+
+    $router->post('lottery_game_match_users', [
+        'uses' => 'LotteryGameMatchUserController@store',
+        'middleware' => 'auth',
+    ]);
 });
