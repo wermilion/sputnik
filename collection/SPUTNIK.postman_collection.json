@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "4a437d48-dc0e-4b5f-b3b8-3e877173a315",
+		"name": "SPUTNIK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27822145"
+	},
+	"item": [
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIxfQ.4Dv2fMjfiCydE0mQVm5NiyD04_SoYelGtVRLui70404",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}{{host}}/api/users",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Bogdan\",\r\n    \"last_name\": \"Mukhatdisov\",\r\n    \"email\": \"bodyagame682005@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"is_admin\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}/api/users/register",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIxfQ.4Dv2fMjfiCydE0mQVm5NiyD04_SoYelGtVRLui70404",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Богдан\",\r\n    \"last_name\": \"Мухатдисов\",\r\n    \"email\": \"bodyagame682005@gmail.com\",\r\n    \"is_admin\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}/api/users/21",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIxfQ.4Dv2fMjfiCydE0mQVm5NiyD04_SoYelGtVRLui70404",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}{{host}}/api/users/21",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LOTTERY_GAME_MATCHES",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIxfQ.4Dv2fMjfiCydE0mQVm5NiyD04_SoYelGtVRLui70404",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"game_id\": 10,\r\n    \"start_date\": \"2024-04-24\",\r\n    \"start_time\": \"16:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}/api/lottery_game_matches",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"path": [
+								"api",
+								"lottery_game_matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIxfQ.4Dv2fMjfiCydE0mQVm5NiyD04_SoYelGtVRLui70404",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"is_finished\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}/api/lottery_game_matches/4",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"path": [
+								"api",
+								"lottery_game_matches",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LOTTERY_GAME_MATCH_USER",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIxfQ.4Dv2fMjfiCydE0mQVm5NiyD04_SoYelGtVRLui70404",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 21,\r\n    \"lottery_game_match_id\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{host}}/api/lottery_game_match_users",
+							"host": [
+								"{{protocol}}{{host}}"
+							],
+							"path": [
+								"api",
+								"lottery_game_match_users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"bodyagame682005@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}{{host}}/api/users/login",
+					"host": [
+						"{{protocol}}{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lottery_games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}{{host}}/api/lottery_games",
+					"host": [
+						"{{protocol}}{{host}}"
+					],
+					"path": [
+						"api",
+						"lottery_games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lottery_game_matches",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}{{host}}/api/lottery_game_matches?lottery_game_id=1",
+					"host": [
+						"{{protocol}}{{host}}"
+					],
+					"path": [
+						"api",
+						"lottery_game_matches"
+					],
+					"query": [
+						{
+							"key": "lottery_game_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "protocol",
+			"value": "http://",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}
