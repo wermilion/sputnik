@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Actions\LotteryGameMatchUser\CreateLotteryGameMatchUserAction;
+use App\Events\UserAttemptJoinMatch;
 use App\Http\Controllers\Controller;
 use App\Resources\LotteryGameMatchUserResource;
 use Illuminate\Http\JsonResponse;
@@ -27,6 +28,8 @@ class LotteryGameMatchUserController extends Controller
         if (Auth::guard('api')->user()->id !== $validatedData['user_id']) {
             return response()->json(['message' => 'You do not have permission to write this user to the game'], 403);
         }
+
+        event(new UserAttemptJoinMatch($validatedData['user_id'], $validatedData['lottery_game_match_id']));
 
         return new LotteryGameMatchUserResource(CreateLotteryGameMatchUserAction::execute($validatedData));
     }

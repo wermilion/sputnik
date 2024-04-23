@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\UserAttemptJoinMatch;
+use App\Listeners\CheckUserAttemptJoinMatch;
 use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -14,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         \App\Events\ExampleEvent::class => [
             \App\Listeners\ExampleListener::class,
+        ],
+        UserAttemptJoinMatch::class => [
+            CheckUserAttemptJoinMatch::class,
         ],
     ];
 
