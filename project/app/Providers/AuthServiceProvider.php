@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Gate;
+use App\Services\JwtService;
+use Exception;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+use Illuminate\Contracts\Auth\Factory as AuthFactory;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,18 +25,26 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Boot the authentication services for the application.
      *
+     * @param AuthFactory $auth
      * @return void
      */
-    public function boot()
+    public function boot(AuthFactory $auth): void
     {
-        // Here you may define how you wish users to be authenticated for your Lumen
-        // application. The callback which receives the incoming request instance
-        // should return either a User instance or null. You're free to obtain
-        // the User instance via an API token or any other method necessary.
+        $auth->viaRequest('token', function ($request) {
+            try {
+                if (!$request->bearerToken()) {
+                    return false;
+                }
 
-        $this->app['auth']->viaRequest('api', function ($request) {
-            if ($request->input('api_token')) {
-                return User::where('api_token', $request->input('api_token'))->first();
+                $userId = JWT::decode($request->bearerToken(), new Key(config('jwt.key'), config('jwt.algo')))->sub;
+
+                if (!$user = User::query()->find($userId)) {
+                    return false;
+                }
+
+                return $user;
+            } catch (Exception $e) {
+                return false;
             }
         });
     }

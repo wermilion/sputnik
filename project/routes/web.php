@@ -25,5 +25,16 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->group(['prefix' => 'users'], function () use ($router) {
         $router->post('register', 'UserController@register');
+        $router->post('login', 'AuthController@login');
+
+        $router->group(['middleware' => 'auth'], function () use ($router) {
+            $router->get('', [
+                'uses' => 'UserController@index',
+                'middleware' => 'admin',
+            ]);
+
+            $router->put('{id}', 'UserController@edit');
+            $router->delete('{id}', 'UserController@destroy');
+        });
     });
 });
