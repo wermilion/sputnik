@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\MatchIsFinished;
+use App\Events\WinnerSelected;
 use App\Events\UserAttemptJoinMatch;
 use App\Listeners\CheckCountGamersMatch;
+use App\Listeners\CheckMatchIsFinished;
 use App\Listeners\CheckUserAttemptJoinMatch;
+use App\Listeners\ScoringPoints;
 use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -21,6 +25,12 @@ class EventServiceProvider extends ServiceProvider
         UserAttemptJoinMatch::class => [
             CheckCountGamersMatch::class,
             CheckUserAttemptJoinMatch::class,
+        ],
+        MatchIsFinished::class => [
+            CheckMatchIsFinished::class,
+        ],
+        WinnerSelected::class => [
+            ScoringPoints::class,
         ],
     ];
 

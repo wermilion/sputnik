@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Actions\LotteryGameMatch\CreateLotteryGameMatchAction;
 use App\Actions\LotteryGameMatch\UpdateLotteryGameMatchAction;
+use App\Events\MatchIsFinished;
 use App\Http\Controllers\Controller;
 use App\Models\LotteryGameMatch;
 use App\Resources\LotteryGameMatchResource;
@@ -45,11 +46,17 @@ class LotteryGameMatchController extends Controller
     /**
      * @throws ValidationException
      */
-    public function update(Request $request, int $id): LotteryGameMatchResource
+    public function update(Request $request, int $id): JsonResponse|LotteryGameMatchResource
     {
         $validatedData = $this->validate($request, [
             'is_finished' => ['required', 'boolean'],
         ]);
+
+        if (!LotteryGameMatch::query()->find($id)) {
+            return response()->json(['message' => 'Match not found'], 404);
+        }
+        
+        event(new MatchIsFinished($id));
 
         $validatedData['id'] = $id;
 
