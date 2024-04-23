@@ -33,8 +33,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
                 'middleware' => 'admin',
             ]);
 
-            $router->put('{id}', 'UserController@edit');
+            $router->put('{id}', 'UserController@update');
             $router->delete('{id}', 'UserController@destroy');
         });
+    });
+
+    $router->group(['prefix' => 'lottery_game_matches', 'middleware' => ['auth', 'admin']], function () use ($router) {
+        $router->post('', 'LotteryGameMatchController@store');
+        $router->put('{id}', 'LotteryGameMatchController@update');
     });
 });

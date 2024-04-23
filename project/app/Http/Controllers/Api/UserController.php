@@ -43,7 +43,7 @@ class UserController extends Controller
     /**
      * @throws ValidationException
      */
-    public function edit(Request $request, int $id): JsonResponse
+    public function update(Request $request, int $id): JsonResponse|UserResource
     {
         $validatedData = $this->validate($request, [
             'first_name' => ['required', 'string'],
@@ -52,13 +52,14 @@ class UserController extends Controller
             'is_admin' => ['required', 'boolean'],
         ]);
 
+        // TODO: make policy for this
         if (Auth::guard('api')->id() !== $id) {
             return response()->json(['message' => 'You do not have permission to edit this user'], 403);
         }
 
         $validatedData['id'] = $id;
 
-        return response()->json(new UserResource(UpdateUserAction::execute($validatedData)));
+        return new UserResource(UpdateUserAction::execute($validatedData));
     }
 
     public function destroy(int $id): JsonResponse
@@ -69,6 +70,7 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
 
+        // TODO: make policy for this
         if (Auth::guard('api')->id() !== $id) {
             return response()->json(['message' => 'You do not have permission to delete this user'], 403);
         }

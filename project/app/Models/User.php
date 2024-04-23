@@ -26,6 +26,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     protected $table = 'users';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'first_name',
         'last_name',

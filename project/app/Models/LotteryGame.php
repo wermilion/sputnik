@@ -19,6 +19,8 @@ class LotteryGame extends Model
 
     protected $table = 'lottery_games';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'gamer_count',

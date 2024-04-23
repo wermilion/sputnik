@@ -19,6 +19,7 @@ class LotteryGameMatchResource extends JsonResource
             'winner_id' => $this->winner_id,
             'start_date' => $this->start_date,
             'start_time' => $this->start_time,
+            'is_finished' => $this->is_finished,
         ];
     }
 }

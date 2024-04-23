@@ -19,8 +19,6 @@ return new class extends Migration {
             $table->string('password')->comment('Пароль');
             $table->boolean('is_admin');
             $table->integer('points')->comment('Количество очков');
-
-            $table->timestamps();
         });
     }
 
