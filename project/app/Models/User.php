@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Lumen\Auth\Authorizable;
 
 /**
@@ -19,6 +21,8 @@ use Laravel\Lumen\Auth\Authorizable;
  * @property string password Пароль
  * @property bool is_admin Является ли пользователь админом
  * @property int points Количество очков
+ *
+ * @property-read Collection|LotteryGameMatch[] $lotteryGameMatches
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -45,4 +49,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public function lotteryGameMatches(): HasMany
+    {
+        return $this->hasMany(LotteryGameMatch::class, 'winner_id');
+    }
 }

@@ -19,6 +19,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'is_admin' => $this->is_admin,
             'points' => $this->points,
+            'won_matches' => LotteryGameMatchResource::collection($this->lotteryGameMatches)
         ];
     }
 }
